@@ -7,16 +7,16 @@ ActiveRecord::Base.connection.tables.each do |table|
 end
 
 titles = Title.create([
-	{ name: 'associate' },
-	{ name: 'senior associate' },
-	{ name: 'manager' },
-	{ name: 'senior manager' },
-	{ name: 'director' }
+	{ name: 'Associate' },
+	{ name: 'Senior Associate' },
+	{ name: 'Manager' },
+	{ name: 'Senior Manager' },
+	{ name: 'Director' }
 ])
 
 users = User.create([
-	{ first_name: 'Dan', last_name: 'Johnson', role: 1, title: Title.find_by_name('manager') },
-	{ first_name: 'David', last_name: 'Thomas', role: 1, title: Title.find_by_name('senior associate') }
+	{ first_name: 'Dan', last_name: 'Johnson', role: 1, title: Title.find_by_name('Manager') },
+	{ first_name: 'David', last_name: 'Thomas', role: 1, title: Title.find_by_name('Senior Associate') }
 ])
 
 skills = Skill.create([
