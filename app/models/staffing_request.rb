@@ -1,6 +1,8 @@
 class StaffingRequest < ActiveRecord::Base
   belongs_to :title
   belongs_to :project
+  # Gives you the 'join' table between staffing requests & skills
+  # Need to manually create the third join table, here it's skills_users and you don't need an extra model for it
   has_and_belongs_to_many :skills
   has_many :allocations
 
