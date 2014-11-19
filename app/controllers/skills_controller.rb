@@ -42,9 +42,9 @@ class SkillsController < ApplicationController
     @skill = Skill.find(params[:id])
 
     if params[:user_id]
-      @user = User.find(params[:user_id])
+      user = User.find(params[:user_id])
 
-      @user.skills << @skill
+      user.skills << @skill
 
       head :no_content
     else
@@ -58,9 +58,18 @@ class SkillsController < ApplicationController
 
   # DELETE /skills/1
   # DELETE /skills/1.json
+  # DELETE /users/1/skills/1
+  # DELETE /users/1/skills/1.json
   def destroy
     @skill = Skill.find(params[:id])
-    @skill.destroy
+
+    if params[:user_id]
+      user = User.find(params[:user_id])
+
+      user.skills.delete(@skill)
+    else
+      @skill.destroy
+    end
 
     head :no_content
   end
