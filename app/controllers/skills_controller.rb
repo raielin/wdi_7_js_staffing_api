@@ -3,8 +3,15 @@ class SkillsController < ApplicationController
   # GET /skills.json
   def index
     @skills = Skill.all
-    
-    render json: @skills
+
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+      @skills = @user.skills
+      render json: @skills
+    else
+      render json: @skills
+    end
+
   end
 
   # GET /skills/1
@@ -38,7 +45,7 @@ class SkillsController < ApplicationController
       @user = User.find(params[:user_id])
 
       @user.skills << @skill
-      
+
       head :no_content
     else
       if @skill.update(skill_params)
